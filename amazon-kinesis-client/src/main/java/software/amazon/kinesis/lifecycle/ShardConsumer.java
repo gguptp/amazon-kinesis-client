@@ -88,6 +88,7 @@ public class ShardConsumer {
 
     private final ConsumerTaskFactory taskFactory;
 
+    @Deprecated
     public ShardConsumer(
             RecordsPublisher recordsPublisher,
             ExecutorService executorService,
@@ -109,30 +110,26 @@ public class ShardConsumer {
                 new KinesisConsumerTaskFactory());
     }
 
-    //
-    // TODO: Make bufferSize configurable
-    //
     public ShardConsumer(
             RecordsPublisher recordsPublisher,
             ExecutorService executorService,
             ShardInfo shardInfo,
             Optional<Long> logWarningForTaskAfterMillis,
             ShardConsumerArgument shardConsumerArgument,
-            ConsumerState initialState,
-            int bufferSize,
             TaskExecutionListener taskExecutionListener,
-            int readTimeoutsToIgnoreBeforeWarning) {
+            int readTimeoutsToIgnoreBeforeWarning,
+            ConsumerTaskFactory consumerTaskFactory) {
         this(
                 recordsPublisher,
                 executorService,
                 shardInfo,
                 logWarningForTaskAfterMillis,
                 shardConsumerArgument,
-                initialState,
-                bufferSize,
+                ConsumerStates.INITIAL_STATE,
+                8,
                 taskExecutionListener,
                 readTimeoutsToIgnoreBeforeWarning,
-                new KinesisConsumerTaskFactory());
+                consumerTaskFactory);
     }
 
     public ShardConsumer(

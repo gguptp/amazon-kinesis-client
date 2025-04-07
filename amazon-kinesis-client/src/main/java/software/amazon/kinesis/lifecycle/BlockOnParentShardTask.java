@@ -14,7 +14,6 @@
  */
 package software.amazon.kinesis.lifecycle;
 
-import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ import software.amazon.kinesis.retrieval.kpl.ExtendedSequenceNumber;
  * If we don't find a checkpoint for the parent shard(s), we assume they have been trimmed and directly
  * proceed with processing data from the shard.
  */
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+@RequiredArgsConstructor
 @Slf4j
 @KinesisClientInternalApi
 // TODO: Check for non null values
